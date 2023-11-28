@@ -8,17 +8,17 @@
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.6.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/10.6.0/firebase-storage-compat.js"></script>
+    <!-- include only the Firebase features as you need 
     <script defer src="/__/firebase/10.6.0/firebase-auth-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-database-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-firestore-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-functions-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-storage-compat.js"></script>
+    
     <script defer src="/__/firebase/10.6.0/firebase-analytics-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-remote-config-compat.js"></script>
     <script defer src="/__/firebase/10.6.0/firebase-performance-compat.js"></script>
-    <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
@@ -70,12 +70,55 @@
 
 
   </head>
+
+  
   <body>
+    <script type="module">
+      // 모듈 형식으로 스크립트를 작성
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyCRTkz5VtaC5sVGB8OJiXxFPt7u4xACD60",
+        authDomain: "isegye-photobooth.firebaseapp.com",
+        databaseURL: "https://isegye-photobooth-default-rtdb.firebaseio.com",
+        projectId: "isegye-photobooth",
+        storageBucket: "isegye-photobooth.appspot.com",
+        messagingSenderId: "27193336596",
+        appId: "1:27193336596:web:66cd874865c83348e2d801",
+        measurementId: "G-0HRGKM6N0P"
+      };
+  
+      // Firebase 앱 초기화
+      const app = firebase.initializeApp(firebaseConfig);
+
+      // 이제 app을 사용하여 필요한 Firebase 서비스에 접근할 수 있습니다.
+      const auth = firebase.auth();
+  
+      const storage = firebase.storage();
+      // 이미지를 표시할 HTML 요소 가져오기
+      const imgElement = document.getElementById('myImage');
+      
+      // Storage에서 이미지 다운로드 및 표시
+      const storageRef = storage.ref('/Assets/Photo'); // 이미지가 저장된 폴더 경로
+      const imageRef = storageRef.child('CanvasScreenShot.png'); // 이미지 파일명
+    
+      imageRef.getDownloadURL()
+        .then((url) => {
+          // 이미지 다운로드 성공시 HTML 요소에 URL 설정하여 표시
+          imgElement.src = url;
+        })
+        .catch((error) => {
+          // 다운로드 실패 시 에러 처리
+          console.error('Error getting download URL: ', error);
+        });
+        
+    </script>
     <div id="header">
         <img class="photoo" src="포토부스.png">
     </div>
     <div id="message">
-        <img src="gs://isegye-photobooth.appspot.com/Assets/sumikko.jpg" alt="어렵구먼">
+        <img id="myImage" alt="당근">
         <button id="photoButton" onclick="redirectToLink('https://firebase.google.com/docs/hosting/')">사진 저장</button>
         <button id="photoButton" onclick="redirectToLink('https://firebase.google.com/docs/hosting/')">비디오 저장</button>
         <script>
