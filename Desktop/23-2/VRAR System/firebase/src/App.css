@@ -1,0 +1,58 @@
+body{
+  background-color: rgb(5, 5, 34);
+  /*background-image: url('/public/배배경.png');*/
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.logo-container {
+  text-align: center;
+  background-image: url('/public/sky.png');
+  padding: 7px; 
+  width: auto;
+  height: 100px;
+}
+
+.image-container {
+  margin-top: 20px; 
+  text-align: center; /* 이미지와 로고 사이 간격 조절 */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin-top: 40px; /* 버튼 그룹과 이미지 사이 간격 조절 */
+}
+
+.download-button {
+  padding: 15px;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.download-button:hover {
+  background-color: rgb(14, 100, 134);
+  color: #ffffff;
+}
+
+
+.logo-container img{
+  max-width: 80%; 
+  height: auto;
+  margin: 0 auto; 
+}
+
+.image-container img {
+  max-width: 90%; 
+  height: auto;
+  margin: 0 auto; 
+}

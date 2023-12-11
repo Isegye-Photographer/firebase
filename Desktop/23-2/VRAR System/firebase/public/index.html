@@ -1,172 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>~이세계 포토부스~</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/10.6.0/firebase-app-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-storage-compat.js"></script>
-    <!-- include only the Firebase features as you need 
-    <script defer src="/__/firebase/10.6.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-messaging-compat.js"></script>
-    
-    <script defer src="/__/firebase/10.6.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/10.6.0/firebase-performance-compat.js"></script>
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-    <style media="screen">
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          text-align: center;
-          background: #ECEFF1;
-          color: rgba(0, 0, 0, 0.87);
-        }
-        .photoo{
-            max-width: 50%;;
-        }
-    
-        #header {
-          background-color: #333;
-          padding: 10px;
-        }
-    
-        #message {
-          background: white;
-          max-width: 600px;
-          margin: 10px auto 16px;
-          padding: 32px 24px;
-          border-radius: 3px;
-        }
-    
-        #message img {
-          max-width: 100%; 
-          height: auto;
-          margin-bottom: 16px; 
-        }
-    
-        #photoButton {
-          width: 20%;
-          background-color: #4CAF50;
-          color: white;
-          padding: 10px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-right: 20px;
-        }
-      </style>
-
-
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
   </head>
-
-  
   <body>
-    <script type="module">
-      // 모듈 형식으로 스크립트를 작성
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-    
-      const firebaseConfig = {
-        apiKey: "AIzaSyCRTkz5VtaC5sVGB8OJiXxFPt7u4xACD60",
-        authDomain: "isegye-photobooth.firebaseapp.com",
-        databaseURL: "https://isegye-photobooth-default-rtdb.firebaseio.com",
-        projectId: "isegye-photobooth",
-        storageBucket: "isegye-photobooth.appspot.com",
-        messagingSenderId: "27193336596",
-        appId: "1:27193336596:web:66cd874865c83348e2d801",
-        measurementId: "G-0HRGKM6N0P"
-      };
-  
-      // Firebase 앱 초기화
-      const app = firebase.initializeApp(firebaseConfig);
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-      // 이제 app을 사용하여 필요한 Firebase 서비스에 접근할 수 있습니다.
-      const auth = firebase.auth();
-  
-      const storage = firebase.storage();
-      // 이미지를 표시할 HTML 요소 가져오기
-      const imgElement = document.getElementById('myImage');
-      
-      // Storage에서 이미지 다운로드 및 표시
-      const storageRef = storage.ref('/Assets/Photo'); // 이미지가 저장된 폴더 경로
-      const imageRef = storageRef.child('CanvasScreenShot.png'); // 이미지 파일명
-    
-      imageRef.getDownloadURL()
-        .then((url) => {
-          // 이미지 다운로드 성공시 HTML 요소에 URL 설정하여 표시
-          imgElement.src = url;
-        })
-        .catch((error) => {
-          // 다운로드 실패 시 에러 처리
-          console.error('Error getting download URL: ', error);
-        });
-        
-    </script>
-    <div id="header">
-        <img class="photoo" src="포토부스.png">
-    </div>
-    <div id="message">
-        <img id="myImage" alt="당근">
-        <button id="photoButton" onclick="redirectToLink('https://firebase.google.com/docs/hosting/')">사진 저장</button>
-        <button id="photoButton" onclick="redirectToLink('https://firebase.google.com/docs/hosting/')">비디오 저장</button>
-        <script>
-            function redirectToLink(link) {
-            window.location.href = link;
-            }
-        </script>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
